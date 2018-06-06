@@ -83,12 +83,12 @@ public class Data {
          sqLiteDatabase.update(SQLConstantes.tbusuario,contentValues,SQLConstantes.SQL_WHERE_ID,whereArgs);
      }
 
-    public ArrayList<Usuario> ObtenerUsuario(String id) {
-        ArrayList<Usuario> datos= new ArrayList<>();
-        String[] whereArgs = new String[]{id};
+    public ArrayList<Usuario> ObtenerUsuarios() {
+        ArrayList<Usuario> datos= new ArrayList<Usuario>();
+        String[] whereArgs = new String[]{};
         Cursor cursor =null;
         try {
-            cursor = sqLiteDatabase.query(SQLConstantes.tbusuario, SQLConstantes.COLUMNAS_USUARIOS, SQLConstantes.SQL_WHERE_ID, whereArgs, null, null, null);
+            cursor = sqLiteDatabase.query(SQLConstantes.tbusuario, SQLConstantes.COLUMNAS_USUARIOS,null, whereArgs, null, null, null);
             while (cursor.moveToNext())
             {   Usuario usuario = new Usuario();
                 usuario.setId(cursor.getString(cursor.getColumnIndex(SQLConstantes.id)));

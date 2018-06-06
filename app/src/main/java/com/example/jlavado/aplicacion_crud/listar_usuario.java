@@ -6,6 +6,7 @@ import android.os.Bundle;
 //import android.support.v7.app.AlertController;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
@@ -28,11 +29,11 @@ public class listar_usuario extends AppCompatActivity {
     private Button btn_ingresar;
     private TextView LinkRegresar;
     private RecyclerView recyclerView;
-    private Data data;
+
     private Context context;
 
 
-    private String id;
+    private String id="aaaa";
     private String nombre;
     private String apellido;
     private String user;
@@ -51,6 +52,7 @@ public class listar_usuario extends AppCompatActivity {
      private  ArrayList<ItemUsuario> itemUsuario;
 
      private UsuarioAdapter usuarioAdapter;
+     Data data;
 
 
 
@@ -62,8 +64,13 @@ public class listar_usuario extends AppCompatActivity {
 
      LinkRegresar = (TextView) findViewById(R.id.link_regresar2);
      recyclerView = (RecyclerView) findViewById(R.id.recycler_usuario);
-     listarUsuario();
 
+     recyclerView.setHasFixedSize(true);
+     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+     recyclerView.setLayoutManager(linearLayoutManager);
+     listarUsuario();
+     usuarioAdapter = new UsuarioAdapter(itemUsuario);
+     recyclerView.setAdapter(usuarioAdapter);
 
 
 
@@ -79,29 +86,20 @@ public class listar_usuario extends AppCompatActivity {
      });
 
 
-
     }
+
     public void listarUsuario(){
-        itemUsuario = new  ArrayList<ItemUsuario>();
-         for (Usuario usuario: datosUsuario){
+         datosUsuario = new ArrayList<Usuario>();
+         itemUsuario = new ArrayList<ItemUsuario>();
+         data = new Data(this);
+         data.open();
+         datosUsuario = data.ObtenerUsuarios();
+         data.close();
+         for(Usuario usuario : datosUsuario){
              itemUsuario.add(new ItemUsuario(usuario.getId(),usuario.getNombre(),usuario.getApellido(),usuario.getUser(),usuario.getPassword()));
-             }
-
-        usuarioAdapter = new UsuarioAdapter(itemUsuario, new UsuarioAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View v, int position) {
-                final CardView rootView = (CardView) v;
-                final TextView txtTextView1 = (TextView) rootView.findViewById(R.id.usuario_item_id);
-                final TextView txtTextView2 = (TextView) rootView.findViewById(R.id.usuario_item_nombres);
-                final TextView txtTextView3 = (TextView) rootView.findViewById(R.id.usuario_item_apellidos);
-                final TextView txtTextView4 = (TextView) rootView.findViewById(R.id.usuario_item_usuario);
-                final TextView txtTextView5 = (TextView) rootView.findViewById(R.id.usuario_item_password);
-            }
-        });
-
-        recyclerView.setAdapter(usuarioAdapter);
-
+         }
     }
+
 
 }
 

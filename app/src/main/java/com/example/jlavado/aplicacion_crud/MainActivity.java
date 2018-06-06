@@ -15,11 +15,14 @@ import com.example.jlavado.aplicacion_crud.fragments.ComponenteFragment;
 import com.example.jlavado.aplicacion_crud.modelo.Data;
 import com.example.jlavado.aplicacion_crud.pojos.Usuario;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView LinkRegistrar;
+    private TextView LinkActualizar;
     private TextView LinkListar;
     private Button btn_ingresar;
     private Data data;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
          LinkRegistrar = (TextView) findViewById(R.id.link_ingresar);
+         LinkActualizar = (TextView) findViewById(R.id.link_actualizar);
          LinkListar =(TextView) findViewById(R.id.link_listar);
          btn_ingresar  = (Button) findViewById(R.id.login_boton_ingresar);
          edt_user=(EditText) findViewById(R.id.login_input_usuario);
@@ -48,6 +52,16 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 
+            }
+        });
+
+        LinkActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),actualizar_usuario.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.push_left_in,R.anim.push_rigth_out);
             }
         });
 

@@ -24,6 +24,10 @@
             android:name=".listar_usuario"
             android:configChanges="screenSize|orientation|keyboardHidden">
         </activity>
+        <activity
+            android:name=".actualizar_usuario"
+            android:configChanges="screenSize|orientation|keyboardHidden">
+        </activity>
     </application>
 
 </manifest>

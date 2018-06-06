@@ -16,11 +16,11 @@ public class Usuario {
     private  String apellido;
 
     public Usuario() {
-        id ="";
-        user ="";
-        password ="";
-        nombre ="";
-        apellido ="";
+        this.id ="";
+        this.user ="";
+        this.password ="";
+        this.nombre ="";
+        this.apellido ="";
 
     }
 

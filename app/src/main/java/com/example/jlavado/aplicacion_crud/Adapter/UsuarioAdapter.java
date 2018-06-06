@@ -25,9 +25,9 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.ViewHold
          public  void onItemClick(View view, int position);
      }
 
-    public UsuarioAdapter(ArrayList<ItemUsuario> usuarios, OnItemClickListener onItemClickListener) {
-        this.usuarios = usuarios;
-        this.onItemClickListener = onItemClickListener;
+    public UsuarioAdapter(ArrayList<ItemUsuario> users) {
+        this.usuarios = users;
+        //this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.ViewHold
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemClickListener.onItemClick(view,position);
+                //onItemClickListener.onItemClick(view,position);
             }
         });
     }
